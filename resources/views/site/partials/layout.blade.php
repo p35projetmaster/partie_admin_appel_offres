@@ -8,6 +8,9 @@
 		<meta name='copyright' content='Precon'>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 		<!-- Title Tag  -->
 		<title>Baosem : Edition & Publicité</title>
@@ -15,6 +18,7 @@
 		<!-- Favicon -->
 	    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>	
 		<link rel="icon" type="image/png" href="img/favicon.html">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{asset('site/css/bootstrap.min.css')}}">
@@ -83,7 +87,7 @@
 
 		<link rel="stylesheet" href="#" id="precon_custom">
 	</head>
-	<body id="body" section onload="initialize()">
+	<body id="body" section onload="initialize()" onload="Show(id)">
 
 		<!-- Preloader -->
 		<div class="preloader-main">

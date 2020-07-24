@@ -26,5 +26,7 @@ class IndexController extends Controller
       public function tarif(){
         return view('site.pages.tarif');
     }
+     
+
 }
 

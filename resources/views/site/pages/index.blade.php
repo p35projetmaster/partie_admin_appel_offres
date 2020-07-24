@@ -65,7 +65,7 @@
       <section class="hero-area">
         <div class="hero-slider">
           <!-- Single Slider -->
-           <div class="single-slide" style="background-image:url('{{asset('site/images/slider/slider-image.jpg')}}')">
+           <div class="single-slide " style="background-color: #17a2b8">
             <div class="container">
               <div class="row">
 			  
@@ -93,16 +93,16 @@
                
                 <div class="col-xs-12 col-sm-6">
                   
-<div class="wrapper fadeInDown" >
-  <div class="welcome-text">
-  <div id="formContent" >
+<div class="wrapper fadeInDown " >
+  <div class="welcome-text ">
+  <div id="formContent" style="background-color: #ffffff ">
     <!-- Tabs Titles -->
  <h1 aligne="center">Accés <Span>Abonné</Span> </h1> 
     <!-- Icon -->
    
 
     <!-- Login Form -->
-    <form>
+    <form >
      
       
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Nom d'utilisateur">
