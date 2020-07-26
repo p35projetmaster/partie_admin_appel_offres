@@ -8,17 +8,14 @@ use App\Imports\AnnoncesImport;
 use App\Imports\UploadExcel;
 use App\Exports\AnnoncesExport;
 use App\Annonce;
+use Maatwebsite\Excel\Concerns\ToArray;
 use App\AnnonceArchives;
 use DB;
 use Carbon\Carbon;
 
 class AnnonceController extends Controller
 {
-     public function ImportExport()
-    {
-      $table[]=0;
-       return view('file-import')->with('insert_data',$table);
-    }
+     
 
     /**
     * @return \Illuminate\Support\Collection
@@ -27,13 +24,13 @@ class AnnonceController extends Controller
     {
       
         $this->validate($request, [
-            'file' => 'required|mimes:csv,txt'
+            'file' => 'required|mimes:xlsx,txt,xlsx'
         ]);
 	    $file=$request->file;
       DB::beginTransaction();
     try {
 
-        $data = Excel::toArray(new AnnoncesImport, $request->file);
+        $data = Excel::ToArray(new AnnoncesImport, $request->file);
         foreach($data as $key => $value)
       {
        foreach($value as $row)
@@ -61,8 +58,7 @@ class AnnonceController extends Controller
         DB::rollBack();
     }
     if ($success) {
-      
-
+     
       if(!empty($insert_data))
          {
 
@@ -83,9 +79,9 @@ class AnnonceController extends Controller
              }
 
   
-      return view('site.admin.resultat')->with('insert_data',$insert_data);
+      return view('admin.resultats')->with('insert_data',$insert_data);
 }
-else return back()->withwarning('fichier incorrect');
+else return back()->withwarning('Fichier incorrect');
     
 }
 
@@ -106,21 +102,23 @@ else return back()->withwarning('fichier incorrect');
         'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
         ]);
        $data=$request->year;
+
+      if(DB::table('annonces')
+       ->whereYear('date_parution_reel', $data)->exists()){  
        
       if(DB::table('annonces')
-       ->whereYear('date_parution_reel', $data)->exists())
+       ->whereYear('date_parution_reel', $data)->where('encours',1)->exists())
       {
        DB::table('annonces')
        ->whereYear('date_parution_reel', $data)
        ->update(['encours' => 0]);
-       return back()->withSuccess( 'l operation a réussi' );
+       return back()->withSuccess( 'l\'operation a réussi' );
       }else
-      return back()->withwarning( 'Cette année n est pas disponible' );
-      
+      return back()->withwarning( 'Cette année est déjà archivé' );
+  
+       }else 
+       return back()->withwarning( 'Cette année n\'existe pas ');
 
 
-    
-      
-       }
-
+}
      }
